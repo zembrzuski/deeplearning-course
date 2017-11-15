@@ -1,6 +1,9 @@
 import numpy as np
 
 
+def cost(A, Y):
+    return np.sum(loss(A, Y))/(X.shape[1])
+
 def loss(a, y):
     return -(y * np.log(a) + (1 - y) * np.log(1 - a))
 
@@ -9,7 +12,8 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
-def compute_gradient(X, Y, W, b):
+
+def compute_gradient_for(X, Y, W, b):
     J = 0; dw1 = 0; dw2 = 0; db = 0
     m = X.shape[1]
 
@@ -29,6 +33,20 @@ def compute_gradient(X, Y, W, b):
     return {'cost': J, 'weight derivative': np.array([dw1, dw2]), 'bias derivative': db}
 
 
+def compute_gradient_vectorized(X, Y, W, b):
+    m = X.shape[1]
+
+    Z = W.dot(X) + b
+    A = sigmoid(Z)
+    J = cost(A, Y)
+
+    dZ = A - Y
+    dW = np.sum(X * dZ, 1) / m
+    db = np.sum(dZ) / m
+
+    return {'cost': J, 'weight derivative': dW, 'bias derivative': db}
+
+
 if __name__ == '__main__':
     point1 = np.array([1, 2])
     point2 = np.array([3, 5])
@@ -39,11 +57,5 @@ if __name__ == '__main__':
     W = np.array([.5, -.5])
     b = .3
 
-    gradient = compute_gradient(X, Y, W, b)
-    print(gradient)
-
-    # TODO fazer um gradient checking para ver se esse cara funciona direito.
-
-    # TODO fazer isso com vetorization.
-
-    # TODO rever o grafo de deep learning para entender direitinho o algoritmo
+    print(compute_gradient_vectorized(X, Y, W, b))
+    print(compute_gradient_for(X, Y, W, b))
