@@ -41,7 +41,7 @@ def compute_gradient_vectorized(X, Y, W, b):
     J = cost(A, Y)
 
     dZ = A - Y
-    dW = np.sum(X * dZ, 1) / m
+    dW = np.dot(X, dZ.T) / m
     db = np.sum(dZ) / m
 
     return {'cost': J, 'weight derivative': dW, 'bias derivative': db}
