@@ -56,7 +56,6 @@ print((funcs.compute_gradient(X, Y, W1, b1, W2, b2_modified, .1)['cost'] - funcs
 xoxo = funcs.compute_gradient(X, Y, W1, b1, W2, b2, .1)
 print('oi')
 
-# TODO passo 1: fazer gradient checking com cada uma das variaveis para ver se esse cara funciona.
 # TODO passo 2: trocar funcao de ativacao para ReLU e ver que ainda funciona.
 # TODO E eh isso.
 
