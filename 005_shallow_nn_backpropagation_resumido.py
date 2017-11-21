@@ -26,6 +26,10 @@ b14 = 2.
 
 W1 = np.concatenate([w11, w12, w13, w14])
 b1 = np.array([b11, b12, b13, b14]).reshape((4, 1))
+
+print(W1.shape)
+print(b1.shape)
+
 w21 = np.array([1., -1, 2, -2]).reshape((1, 4))  # um neuronio, 4 features.
 W2 = np.concatenate([w21])
 b2 = np.array([-.1]).reshape((1, 1))
