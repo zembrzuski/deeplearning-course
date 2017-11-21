@@ -35,24 +35,13 @@ back_prop = funcs.compute_gradient_three_layer(
 # com isso, com meus testes bombando, depois, vou ser capaz de trocar minhas funcoes de ativacao
 # e manter os testes funcionando.
 
-fwd_prop = funcs.forward_propagation_for_three_layered_neural_net(
-    X=X, Y=Y,
-    W1=W1, b1=B1,
-    W2=W2, b2=B2,
-    W3=W3, b3=B3,
-    g1=funcs.sigmoid,
-    g2=funcs.sigmoid,
-    g3=funcs.sigmoid
-)
-
-
 funcs.do_gradient_checking(
     X=X, Y=Y,
     W1=W1, b1=B1,
     W2=W2, b2=B2,
     W3=W3, b3=B3,
-    g1=funcs.sigmoid, g2=funcs.sigmoid, g3=funcs.sigmoid,
-    g1_derivative=funcs.sigmoid_derivative, g2_derivative=funcs.sigmoid_derivative
+    g1=funcs.relu, g2=funcs.relu, g3=funcs.sigmoid,
+    g1_derivative=funcs.relu_derivative, g2_derivative=funcs.relu_derivative
 )
 
 print("just finished.")

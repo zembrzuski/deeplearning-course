@@ -1,6 +1,12 @@
 import numpy as np
 
 
+def relu(x):
+    return np.maximum(x, 0)
+
+def relu_derivative(x):
+    return 1. * (relu(x) > 0)
+
 def sigmoid(x):
     """
     Computa a sigmoide de x. X pode ser um número real ou um numpy.array
@@ -110,11 +116,11 @@ def compute_gradient_three_layer(X, Y, W1, b1, W2, b2, W3, b3, g1, g2, g3, g1_de
     dw3 = (np.dot(dz3, a2.T))/m
     db3 = (np.sum(dz3, axis=1, keepdims=True))/m
 
-    dz2 = np.dot(W3.T, dz3) * g1_derivative(a2)
+    dz2 = np.dot(W3.T, dz3) * g2_derivative(a2)
     dw2 = (np.dot(dz2, a1.T))/m
     db2 = (np.sum(dz2, axis=1, keepdims=True)) / m
 
-    dz1 = np.dot(W2.T, dz2) * g2_derivative(a1)
+    dz1 = np.dot(W2.T, dz2) * g1_derivative(a1)
     dw1 = (np.dot(dz1, a0.T))/m
     db1 = (np.sum(dz1, axis=1, keepdims=True)) / m
 
