@@ -26,7 +26,7 @@ def loss(a, y):
 
 
 def cost(Y_hat, Y):
-    return np.sum(loss(Y_hat, Y))/Y_hat.shape[1]
+    return np.sum(-(y * np.log(a) + (1 - y) * np.log(1 - a)))/Y_hat.shape[1]
 
 
 def forward_propagation(X, W1, b1, W2, b2):
